@@ -1,0 +1,66 @@
+[200~import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class LoginPage extends JFrame implements ActionListener {
+
+    // Components
+    private JTextField userTextField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+    private JLabel statusLabel;
+
+    // Hardcoded credentials
+    private final String USERNAME = "admin";
+    private final String PASSWORD = "password123";
+
+    public LoginPage() {
+        setTitle("Login Page");
+        setSize(350, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Center the window
+
+        // Layout
+        setLayout(new GridLayout(4, 2, 10, 10));
+
+        // Username
+        add(new JLabel("Username:"));
+        userTextField = new JTextField();
+        add(userTextField);
+
+        // Password
+        add(new JLabel("Password:"));
+        passwordField = new JPasswordField();
+        add(passwordField);
+
+        // Status
+        statusLabel = new JLabel("");
+        add(statusLabel);
+
+        // Login button
+        loginButton = new JButton("Login");
+        loginButton.addActionListener(this);
+        add(loginButton);
+
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String username = userTextField.getText();
+        String password = new String(passwordField.getPassword());
+
+        if (username.equals(USERNAME) && password.equals(PASSWORD)) {
+            statusLabel.setText("Login successful!");
+            JOptionPane.showMessageDialog(this, "Welcome " + username + "!");
+        } else {
+            statusLabel.setText("Login failed!");
+            JOptionPane.showMessageDialog(this, "Invalid credentials", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public static void main(String[] args) {
+        new LoginPage();
+    }
+}
+
