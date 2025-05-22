@@ -1,0 +1,24 @@
+import webbrowser
+
+html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; }
+        h1 { color: #333; }
+        p { font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is a simple webpage created with Python.</p>
+</body>
+</html>
+"""
+
+# Save to file
+with open("index.html", "w") as file:
+    file.wri
