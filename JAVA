@@ -1,0 +1,43 @@
+import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.issue.Issue;
+import com.onresolve.jira.groovy.user.FormField;
+import com.atlassian.jira.issue.fields.CustomField;
+
+def issueManager = ComponentAccessor.getIssueManager()
+def customFieldManager = ComponentAccessor.customFieldManager
+def optionsManager = ComponentAccessor.optionsManager
+
+def foldersField = getFieldByName("Province_Prefecture")
+def subfoldersField = getFieldByName("Region")
+subfoldersField.setFormValue(-1)
+
+
+
+// Get the all the options of Subfolders
+def subfoldersCF = customFieldManager.getCustomFieldObjectsByName("Region")[0]
+def fieldconfig = subfoldersCF.getRelevantConfig(getIssueContext())
+List options = optionsManager.getOptions(fieldconfig)
+
+// def optionsList = ["Disable", "Creation", "Modification", "Deletion", "Activation"]
+// Checks
+if ((foldersField.value == "AP")) {
+def newOptions = options.findAll { it.value in ["Srikakulam","Vizianagaram", "Manyam", "Vishakapatnam", "Anakapalli", "Kakinada"] }
+subfoldersField.setFieldOptions(newOptions)
+} 
+else if((foldersField.value == "TN")) {
+def newOptions = options.findAll { it.value in ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore"] }
+subfoldersField.setFieldOptions(newOptions)
+}
+else if((foldersField.value == "TS")) {
+def newOptions = options.findAll { it.value in ["Adilabad", "Kumuram Bheem", "Mancherial", "Nirmal", "Nizamabad"] }
+subfoldersField.setFieldOptions(newOptions)
+}
+else if((foldersField.value == "KA")) {
+def newOptions = options.findAll { it.value in ["Chamarajanagara", "Dakshina Kannada", "Kalaburagi", "Kolara", "Raichur"] }
+subfoldersField.setFieldOptions(newOptions)
+}
+else if((foldersField.value == "MH")) {
+def newOptions = options.findAll { it.value in ["Paschim Maharashtra (Desh)", "Vidarbha (Varhad)", "Marathwada", "Vidarbha", "North Maharashtra"] }
+subfoldersField.setFieldOptions(newOptions)
+}
+
