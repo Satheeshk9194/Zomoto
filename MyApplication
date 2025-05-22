@@ -1,0 +1,8 @@
+#!/bin/bash
+sudo su -
+yum update -y
+yum install httpd -y
+yum install git -y
+service httpd start
+chkconig httpd on
+git clone https://github.com/ARAVINDTrainings/Essence.git /var/www/html/
